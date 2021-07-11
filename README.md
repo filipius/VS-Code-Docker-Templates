@@ -16,7 +16,7 @@ For these examples to work you need to put them in a directory called .devcontai
 root
  |
  |- .devcontainer
-    |- devcontainer.jso
+    |- devcontainer.json
     |- other files
  |- yourdirectory1
     |- yourfile1
