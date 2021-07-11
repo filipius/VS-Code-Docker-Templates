@@ -1,0 +1,9 @@
+{
+    "name": "wildfly",
+	"image": "jboss/wildfly",
+	"extensions": [
+		"vscjava.vscode-java-pack",
+		"redhat.vscode-server-connector"
+	],
+	//"postCreateCommand": "pip3 install -r requirements.txt"
+}

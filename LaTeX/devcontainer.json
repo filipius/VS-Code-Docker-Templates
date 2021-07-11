@@ -1,0 +1,7 @@
+{
+    "name": "LaTeX",
+    "extensions": [
+      "james-yu.latex-workshop"
+    ],
+    "image": "texlive/texlive",
+}

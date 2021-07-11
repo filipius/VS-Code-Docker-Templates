@@ -1,0 +1,8 @@
+{
+    "name": "Python",
+	"image": "python",
+	"extensions": [
+		"ms-python.python"
+	],
+	//"postCreateCommand": "pip3 install -r requirements.txt"
+}
