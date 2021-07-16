@@ -1,8 +1,9 @@
 {
     "name": "Python",
-	"image": "python:3.9",
+	"dockerFile": "Dockerfile",
 	"extensions": [
 		"ms-python.python"
 	],
-	"postCreateCommand": "pip3 install -r requirements.txt"
+	"remoteUser": "main"
+	//"postCreateCommand": "pip3 install -r requirements.txt"
 }

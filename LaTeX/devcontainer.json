@@ -1,7 +1,10 @@
 {
     "name": "LaTeX",
     "extensions": [
-      "james-yu.latex-workshop"
-    ],
-    "image": "texlive/texlive",
+		"james-yu.latex-workshop",
+		"corentinartaud.pdfpreview",
+		"analytic-signal.preview-pdf",
+		"mhutchie.git-graph"
+	],
+    "dockerFile": "Dockerfile",
 }
