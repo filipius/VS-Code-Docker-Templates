@@ -4,7 +4,8 @@
 		"james-yu.latex-workshop",
 		"corentinartaud.pdfpreview",
 		"analytic-signal.preview-pdf",
-		"mhutchie.git-graph"
+		"mhutchie.git-graph",
+		"streetsidesoftware.code-spell-checker"
 	],
     "dockerFile": "Dockerfile",
 }
