@@ -21,21 +21,26 @@ RUN set -eux \
   git-core \
   less \
   passwd \
-  #locales \
   sudo \
   vim \
   wget \
   zsh \
   && microdnf clean all \
-  # set up locale
-  #&& locale-gen en_US.UTF-8 \
   # add a user (--disabled-password: the user won't be able to use the account until the password is set)
   && adduser -p ${USER_PASSWORD} --shell /bin/zsh --home /home/$USER_NAME -c "User" ${USER_NAME} \
   # update the password
   && echo ${USER_NAME}:${USER_PASSWORD} | chpasswd \
   && usermod -aG wheel ${USER_NAME}
   
-  
+
+# install Kafka
+RUN curl -O https://mirrors.up.pt/pub/apache/kafka/2.8.0/kafka_2.13-2.8.0.tgz
+RUN tar -xzf kafka_2.13-2.8.0.tgz
+RUN mv kafka_2.13-2.8.0 /opt/
+RUN chown -R ${USER_NAME}.${USER_NAME} /opt/kafka_2.13-2.8.0/
+RUN rm kafka_2.13-2.8.0.tgz
+
+
 # the user we're applying this too (otherwise it most likely install for root)
 USER $USER_NAME
 # terminal colors with xterm
@@ -46,6 +51,7 @@ ENV ZSH_THEME robbyrussell
 # run the installation script  
 #  RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 
 # start zsh
 CMD [ "zsh" ]

@@ -17,6 +17,7 @@ services:
       - database
     ports:
       - 8080:8080
+      - 8443:8443
       - 9990:9990
   command-line:
     build:
@@ -26,5 +27,8 @@ services:
     links: 
       - database
       - wildfly
+    ports:
+      - 2181:2181
+      - 9092:9092
     volumes:
       - ..:/workspace
