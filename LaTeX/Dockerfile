@@ -20,6 +20,7 @@ RUN apt-get update && \
   curl \
   git-core \
   locales \
+  procps \
   zsh \
   wget \
   # set up locale

@@ -19,6 +19,7 @@ services:
       - 8080:8080
       - 8443:8443
       - 9990:9990
+      - 9993:9993
   command-line:
     build:
      context: .
@@ -32,3 +33,4 @@ services:
       - 9092:9092
     volumes:
       - ..:/workspace
+    
