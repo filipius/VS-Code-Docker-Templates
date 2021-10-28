@@ -1,0 +1,5 @@
+{
+    "name": "Node",
+	"dockerFile": "Dockerfile",
+	"remoteUser": "main"
+}
