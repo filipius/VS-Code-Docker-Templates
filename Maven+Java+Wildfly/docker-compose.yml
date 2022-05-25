@@ -1,0 +1,25 @@
+version: '3.4'
+
+services:
+  wildfly:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+      - 8443:8443
+      - 9990:9990
+      - 9993:9993
+  command-line:
+    build:
+     context: .
+     dockerfile: Dockerfile.2
+    command: tail -f /dev/null
+    links: 
+      - wildfly
+    ports:
+      - 2181:2181
+      - 9092:9092
+    volumes:
+      - ..:/workspace
+    
