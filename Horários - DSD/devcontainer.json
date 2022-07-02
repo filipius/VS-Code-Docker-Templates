@@ -5,5 +5,5 @@
 		"ms-python.python"
 	],
 	"remoteUser": "main",
-	"postCreateCommand": "postCreateCommand": "pip3 install -r .devcontainer/requirements.txt"
+	"postCreateCommand": "pip3 install -r .devcontainer/requirements.txt"
 }

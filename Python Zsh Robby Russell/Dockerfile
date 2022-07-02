@@ -18,6 +18,7 @@ RUN apt-get update && \
   vim \
   curl \
   git-core \
+  less \
   locales \
   zsh \
   wget \
