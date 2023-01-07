@@ -1,0 +1,12 @@
+{
+    "name": "PlainJava",
+	"dockerFile": "Dockerfile",
+	"extensions": [
+		"dotjoshjohnson.xml",
+		"vscjava.vscode-maven",
+		"vscjava.vscode-java-pack",
+		"redhat.fabric8-analytics",
+		"mhutchie.git-graph"
+	],
+	"remoteUser": "main"
+}

@@ -1,0 +1,16 @@
+{
+    "name": "clang",
+	"dockerFile": "Dockerfile",
+	"remoteUser": "main",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"GitHub.copilot",
+				"ms-vscode.cpptools",
+				"ms-vscode.cpptools-extension-pack",
+				"ms-vscode.cpptools-themes",
+				"vadimcn.vscode-lldb"
+			]
+		}
+	}
+}
