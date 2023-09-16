@@ -1,4 +1,4 @@
-FROM maven:3-openjdk-16
+FROM maven:latest
 
 #From https://gist.github.com/MichalZalecki/4a87880bbe7a3a5428b5aebebaa5cd97
 ARG USER_NAME="main"
@@ -10,9 +10,9 @@ RUN echo $USER_PASSWORD
 # install the tooks i wish to use
 USER root
 
-# install the tooks i wish to use
-RUN set -eux \
- && microdnf install curl \
+RUN apt-get update && \
+  apt-get install -y sudo \
+  curl \
   git-core \
   less \
   passwd \
@@ -20,12 +20,12 @@ RUN set -eux \
   vim \
   wget \
   zsh \
-  && microdnf clean all \
+  # set up locale
+  && locale-gen en_US.UTF-8 \
   # add a user (--disabled-password: the user won't be able to use the account until the password is set)
-  && adduser -p ${USER_PASSWORD} --shell /bin/zsh --home /home/$USER_NAME -c "User" ${USER_NAME} \
+  && adduser --quiet --disabled-password --shell /bin/zsh --home /home/$USER_NAME --gecos "User" $USER_NAME \
   # update the password
-  && echo ${USER_NAME}:${USER_PASSWORD} | chpasswd \
-  && usermod -aG wheel ${USER_NAME}
+  && echo "${USER_NAME}:${USER_PASSWORD}" | chpasswd && usermod -aG sudo $USER_NAME
   
 
 
