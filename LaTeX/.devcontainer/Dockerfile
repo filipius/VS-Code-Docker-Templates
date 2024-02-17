@@ -21,26 +21,25 @@ RUN apt-get update && \
   git-core \
   locales \
   procps \
+  ssh \
   zsh \
   wget \
   # set up locale
   && locale-gen en_US.UTF-8 \
-  # add a user (--disabled-password: the user won't be able to use the account until the password is set)
-  && adduser --quiet --disabled-password --shell /bin/zsh --home /home/$USER_NAME --gecos "User" $USER_NAME \
-  # update the password
-  && echo "${USER_NAME}:${USER_PASSWORD}" | chpasswd && usermod -aG sudo $USER_NAME
-
+  && useradd -m -s /bin/zsh -G sudo $USER_NAME \
+  && echo "${USER_NAME}:${USER_PASSWORD}" | chpasswd  
   
-  # the user we're applying this too (otherwise it most likely install for root)
-  USER $USER_NAME
-  # terminal colors with xterm
-  ENV TERM xterm
-  # set the zsh theme
-  ENV ZSH_THEME robbyrussell
+# the user we're applying this too (otherwise it most likely install for root)
+USER $USER_NAME
+# terminal colors with xterm
+ENV TERM xterm
+# set the zsh theme
+ENV ZSH_THEME robbyrussell
 
-  # run the installation script  
-  #  RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
-  RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# run the installation script  
+#  RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  # start zsh
-  CMD [ "zsh" ]
+
+# start zsh
+CMD [ "zsh" ]
