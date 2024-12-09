@@ -17,17 +17,19 @@ RUN apt-get update && \
   apt-get install -y sudo \
   vim \
   less \
+  locales \
   curl \
   git-core \
-  locales \
   procps \
-  ssh \
   zsh \
   wget \
-  # set up locale
-  && locale-gen en_US.UTF-8 \
-  && useradd -m -s /bin/zsh -G sudo $USER_NAME \
-  && echo "${USER_NAME}:${USER_PASSWORD}" | chpasswd  
+  && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
+  && locale-gen \
+  && update-locale LANG=en_US.UTF-8 \
+  && mkdir -p /home/$USER_NAME \
+  && useradd --shell /bin/zsh --home-dir /home/$USER_NAME --password $USER_NAME $USER_NAME \
+  && usermod -aG sudo $USER_NAME \
+  && chown -R $USER_NAME:$USER_NAME /home/$USER_NAME
   
 # the user we're applying this too (otherwise it most likely install for root)
 USER $USER_NAME
@@ -39,7 +41,6 @@ ENV ZSH_THEME robbyrussell
 # run the installation script  
 #  RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
 
 # start zsh
 CMD [ "zsh" ]
